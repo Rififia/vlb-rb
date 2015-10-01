@@ -57,8 +57,8 @@ module VikiLinkBot
               votes[section] += 1 if section
           end
         end
-        comment = (votes.values.reduce(0, &:+) == 0) ?
-            "Personne n'a encore voté" :
+        if votes.values.reduce(0, &:+) == 0
+            "Personne n'a encore voté, ou bien je ne sais pas reconnaitre les votes."
             votes.map { |k, v| "#{v} #{k}" }.join(', ') +
                 " (#{(100 * votes['pour'] / votes.values.reduce(0, &:+).to_f).round(2)} % d'accord)"
         m.reply "#{comment} - #{wiki.article_url(title)}"
