@@ -50,6 +50,7 @@ module VikiLinkBot
           if /\A(?>[#*]\s*)\b/ == "#{{"
             votes[$1]
           end
+          
           if /\A(?>[#*]\s*)\w/ == "#"
             votes[section]
           end
