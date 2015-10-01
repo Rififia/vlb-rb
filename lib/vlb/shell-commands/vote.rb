@@ -46,10 +46,10 @@ module VikiLinkBot
         votes = Hash.new(0)
         section = nil
         content.each_line do |line|
-         case line.downcase
-            when /\A(?>[#*]\s*)\{\{\b/
-              votes[$1]
-            end
+        case line.downcase
+          when /\A(?>[#*]\s*)\{\{\b/
+            votes[$1]
+          end
         end
         if votes.values.reduce(0, &:+) == 0
             "Personne n'a encore voté, ou bien je ne sais pas reconnaitre les votes."
