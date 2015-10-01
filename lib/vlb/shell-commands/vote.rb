@@ -47,7 +47,7 @@ module VikiLinkBot
         section = nil
         content.each_line do |line|
         case line.downcase
-          when /\A(?>[#*]\s*)\{\{\b/
+          when /\A(?>[#*]\s*)\{\{
             votes[$1]
           end
         end
