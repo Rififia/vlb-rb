@@ -46,13 +46,8 @@ module VikiLinkBot
         votes = Hash.new(0)
         section = nil
         content.each_line do |line|
-        case line.downcase
-          if /\A(?>[#*]\s*)\b/ == "#{{"
+         when /\A(?>[#*]\s*)\{\{\b/
             votes[$1]
-          end
-          
-          if /\A(?>[#*]\s*)\w/ == "#"
-            votes[section]
           end
         end
         if votes.values.reduce(0, &:+) == 0
