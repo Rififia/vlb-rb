@@ -50,10 +50,8 @@ module VikiLinkBot
         case line.downcase
             when /\A(?>[#*]\s*)\{\{?\b/
               votes[$1]
-            end
             when /\A(?>[#*]\s*)\w/
               votes[section]
-            end
         end
         if votes.values.reduce(0, &:+) == 0
             "Personne n'a encore voté, ou bien je ne sais pas reconnaitre les votes."
