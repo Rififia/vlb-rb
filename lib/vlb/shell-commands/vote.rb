@@ -47,12 +47,8 @@ module VikiLinkBot
         section = nil
         content.each_line do |line|
           case line.downcase
-            when /\A(?>=+\s*)(?!\{\{|pour|contre|neutre)/
-              section = nil
-            when /\A(?>=+\s*)(?:\{\{)?(pour|contre|neutre)/
-              section = $1
-            when /\A(?>[#*]\s*)\{\{(pour|contre|neutre)?\b/
-              votes[$1 || section] += 1 if section 
+            when /\A(?>[#*]\s*)\{\{?\b/
+              votes[$1]
             when /\A(?>[#*]\s*)\{\{(cé|Conflit d'édition|CÉ)?\b/
               votes[section]
           end
