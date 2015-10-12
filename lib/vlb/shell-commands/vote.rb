@@ -46,10 +46,11 @@ module VikiLinkBot
         votes = Hash.new(0)
         section = nil
         content.each_line do |line|
+        ignored = ["{{cé}},{{conflit d'édition}}"]
         case line.downcase
             when /\A(?>[#*]\s*)\{\{?\b/
               votes[$1]
-            when /\A(?>[#*]\s*)\{\{(cé|Conflit d'édition|CÉ)?\b/
+            when /\A(?>[#*]\s*)\w/
               votes[section]
           end
         end
