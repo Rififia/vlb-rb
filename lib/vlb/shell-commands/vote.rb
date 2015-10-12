@@ -53,8 +53,8 @@ module VikiLinkBot
               section = $1
             when /\A(?>[#*]\s*)\{\{(pour|contre|neutre)?\b/
               votes[$1 || section] += 1 if section 
-            when /\A(?>[#*]\s*)\w/
-              votes[section] += 1 if section
+            when /\A(?>[#*]\s*)\{\{(cé|Conflit d'édition|CÉ)?\b/
+              votes[section]
           end
         end
         comment = (votes.values.reduce(0, &:+) == 0) ?
