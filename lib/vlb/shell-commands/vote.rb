@@ -48,10 +48,12 @@ module VikiLinkBot
         content.each_line do |line|
         ignored = ["{{cé}},{{conflit d'édition}}"]
         case line.downcase
+            when /\A(?>=+\s*)(?:\{\{)?(Avis non pris en compte)/
+              section = nil
             when /\A(?>[#*]\s*)\{\{?\b/
-              votes[$1]
-            when /\A(?>[#*]\s*)\w/
-              votes[section]
+              votes[$1] += 1 if section 
+            when /\A(?>[#*]\s*)\{\{(cé|Conflit d'édition|CÉ)?\b/
+              votes[section] += 1 if section 
         end
         if votes.values.reduce(0, &:+) == 0
             "Personne n'a encore voté, ou bien je ne sais pas reconnaitre les votes."
