@@ -48,7 +48,7 @@ module VikiLinkBot
         content.each_line do |line|
         ignored = ["{{cé}},{{conflit d'édition}}"]
         case line.downcase
-            when /\A(?>=+\s*)(?:\{\{)?(Avis non pris en compte)/
+            when /\A(?>=+\s*)(?:\{\{)?Avis non pris en compte/
               section = nil
             when /\A(?>[#*]\s*)\{\{?\b/
               votes[$1] += 1 if section 
