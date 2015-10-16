@@ -52,8 +52,6 @@ module VikiLinkBot
               section = nil
             when /\A(?>[#*]\s*)\{\{?\b/
               votes[$1] += 1 if section 
-            when /\A(?>[#*]\s*)\{\{(cé|Conflit d'édition|CÉ)?\b/
-              votes[section] += 1 if section 
         end
         if votes.values.reduce(0, &:+) == 0
             "Personne n'a encore voté, ou bien je ne sais pas reconnaitre les votes."
