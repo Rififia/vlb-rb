@@ -47,10 +47,12 @@ module VikiLinkBot
         section = nil
         content.each_line do |line|
           case line.downcase
+            when /\A(?>=+\s*)(?:\{\{)?(Avis non pris en compte)/
+              section = nil
             when /\A(?>[#*]\s*)\{\{?\b/
-              votes[$1]
+              votes[$1] += 1 if section 
             when /\A(?>[#*]\s*)\{\{(cé|Conflit d'édition|CÉ)?\b/
-              votes[section]
+              votes[section] += 1 if section 
           end
         end
         comment = (votes.values.reduce(0, &:+) == 0) ?
