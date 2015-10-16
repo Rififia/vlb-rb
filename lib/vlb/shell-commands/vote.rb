@@ -15,6 +15,7 @@ module VikiLinkBot
           contestation: "Vikidia:Contestation_du_statut_d'administrateur",
           pdd: 'Vikidia:Prise_de_décision',
           sa: 'Vikidia:Super_article/Élection'
+          pas: 'Vikidia:Page à supprimer'
       }
       unless kinds.key?(kind)
         guesses = Utils.guess(kind.to_s, kinds.keys)
